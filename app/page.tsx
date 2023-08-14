@@ -74,26 +74,30 @@ export default function Home() {
             </div>
           ) : (
           <>
-            <div className='flex flex-wrap items-center justify-center gap-3'>
               {loading ? (
                 <div className="max-w-[1000px] w-full mx-auto flex items-center justify-center gap-2 md:mt-10 mt-5">
                 <Loader/>
                 </div>
               ) : (
-                <>
+              <>
+              <div>
+              <div className='flex flex-wrap items-center justify-center gap-3'>
                 {
                 allCars.map((car:carProps, index:number) => (
                   <CarCard car={car} key={index}/>
                   ))
                 }
+              </div>
+              <div>
                 <ShowMore 
                 pageNumber={limit  / 10} 
                 isNext={limit > allCars.length}
                 setLimit={setLimit}
                 />
-                </>
-              )}
+              </div>
             </div>
+            </>
+            )}
           </>
           )}
         </div>
