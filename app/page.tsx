@@ -74,7 +74,7 @@ export default function Home() {
             </div>
           ) : (
           <>
-            <div className='flex flex-wrap items-center justify-start gap-3'>
+            <div className='flex flex-wrap items-center justify-center gap-3'>
               {loading ? (
                 <div className="max-w-[1000px] w-full mx-auto flex items-center justify-center gap-2 md:mt-10 mt-5">
                 <Loader/>
