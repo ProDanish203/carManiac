@@ -10,13 +10,13 @@ interface carCardProps{
 }
 
 const CarCard = ({car}: carCardProps) => {
-  const {year, make, model, drive, transmission, city_mpg } = car;
+  const {drive, transmission, city_mpg } = car;
   
   const [modal, setModal] = useState(false);
   return (
     <>
     <div className='px-4 py-3 rounded-md shadow-sm bg-white max-w-[350px] min-h-[100px] w-full'>
-      <h2 className='text-2xl font-bold'>Toyota Corolla</h2>
+      <h2 className='text-2xl font-bold'>{car.make.toUpperCase()} {car.model.toUpperCase()}</h2>
       <p className='relative flex otems-center gap-1'>
           <span className='text-3xl'>500</span>
           <span className='text-xl font-semibold'>$</span>
@@ -40,8 +40,8 @@ const CarCard = ({car}: carCardProps) => {
         <div className='flex-col flex items-center'>
           <Image src="/tire.svg" width={20} height={20} alt='transmisssion'/>
           <p className='text-sm text-text font-semibold'>
-            {/* {drive.toUpperCase()} */}
-            FWD</p>
+            {drive.toUpperCase()}
+          </p>
         </div>
 
         <div className='flex-col flex items-center'>

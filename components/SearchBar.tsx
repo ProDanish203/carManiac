@@ -5,11 +5,12 @@ import { Fragment, useState } from "react";
 import { manufacturers } from "../utils/data";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { SearcBarProps } from "@/types";
 
-const SearchBar = () => {
+const SearchBar = ({setMake, setModel}:SearcBarProps) => {
 
-  const [make, setMake] = useState("");
-  const [model, setModel] = useState("");
+  const [searchMake, setSearchMake] = useState("");
+  const [searchModel, setSearchModel] = useState("");
   const [query, setQuery] = useState("")
   const router = useRouter();
 
@@ -20,31 +21,31 @@ const SearchBar = () => {
 
   const handleSearch = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
-    if(!make && !model) return toast.error("Please fill in the fields");
-    console.log(make + " " + model);
+    if(!searchMake && !searchModel) return toast.error("Please fill in the fields");
 
-    updateSearchParams(make.toLowerCase(), model.toLowerCase());
+    setModel(searchModel);
+    setMake(searchMake);
   }
 
-  const updateSearchParams = (make: string, model:string) => {
-    const searchParams = new URLSearchParams(window.location.search);
+  // const updateSearchParams = (make: string, model:string) => {
+  //   const searchParams = new URLSearchParams(window.location.search);
 
-    if(make){
-      searchParams.set('make', make)
-    }else{
-      searchParams.delete('make');
-    }
+  //   if(make){
+  //     searchParams.set('make', make)
+  //   }else{
+  //     searchParams.delete('make');
+  //   }
 
-    if(model){
-      searchParams.set('model', model)
-    }else{
-      searchParams.delete('model');
-    }
+  //   if(model){
+  //     searchParams.set('model', model)
+  //   }else{
+  //     searchParams.delete('model');
+  //   }
 
-    const newPath = `${window.location.pathname}?${searchParams.toString()}` 
+  //   const newPath = `${window.location.pathname}?${searchParams.toString()}` 
     
-    router.push(newPath);
-  }
+  //   router.push(newPath);
+  // }
 
   return (
     <>
@@ -52,7 +53,7 @@ const SearchBar = () => {
     onSubmit={handleSearch}
     className='flex items-center sm:p-0 px-3 gap-2 justify-between max-w-[700px] w-full'>
         <div className='bg-white sm:flex-row flex-col px-2 py-2 rounded-md shadow-lg text-text flex sm:gap-2 gap-4 w-full z-10'>
-          <Combobox value={make} onChange={setMake}>
+          <Combobox value={searchMake} onChange={setSearchMake}>
             <div className="relative w-full flex items-center gap-2">
               <Combobox.Button className="">
                 <Image src="/honda-logo.png" width={30} height={100} alt="honda"/>
@@ -99,10 +100,10 @@ const SearchBar = () => {
           </Combobox>
           <div className="flex items-center gap-3 w-full">
             <i className="fas fa-car text-black"></i>
-            <input type="text" placeholder='Year' 
+            <input type="text" placeholder='Model' 
             className='bg-transparent py-1 outline-none w-full'
-            value={model}
-            onChange={(e) => setModel(e.target.value)}
+            value={searchModel}
+            onChange={(e) => setSearchModel(e.target.value)}
             />
             <button type="submit">
               <i className="sm:hidden block fas fa-magnifying-glass text-xl"></i>

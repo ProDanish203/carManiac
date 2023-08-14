@@ -27,3 +27,32 @@ export interface carDetailsProps{
     modal:boolean,
     closeModal:() => void
 }
+
+export interface FilterProps{
+    make: string;
+    model: string;
+    year: number;
+    limit: number;
+    fuel: string;
+}
+
+export interface OptionProps{  
+    title:string,
+    value:string
+}
+export interface CustomFilterProps{
+    title:string;
+    options:OptionProps[];
+    setFilter:(text:string) => void;
+}
+
+export interface SearcBarProps{
+    setMake:(text: string) => void
+    setModel:(text:string) => void
+}
+
+export interface ShowMoreProps{
+    pageNumber:number;
+    isNext:boolean;
+    setLimit:(no: number) => void
+}

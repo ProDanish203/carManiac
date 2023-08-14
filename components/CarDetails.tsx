@@ -61,13 +61,12 @@ const CarDetails = ({car, modal, closeModal}: carDetailsProps) => {
 
             <div className='my-3 mt-6'>
                 <Dialog.Title className="text-2xl font-semibold">
-                    Toyota Corolla
-                    {/* {car.make.toUpperCase()} {car.model.toUpperCase()} */}
+                    {car.make.toUpperCase()} {car.model.toUpperCase()}
                 </Dialog.Title>
                 <Dialog.Description>
                 {
-                Object.entries(car).map(([key, value]) => (
-                <p className='flex justify-between gap-2 items-center mt-2 text-gray-600 capitalize'>
+                Object.entries(car).map(([key, value], index) => (
+                <p className='flex justify-between gap-2 items-center mt-2 text-gray-600 capitalize' key={index}>
                     <span>{key}</span>
                     <span>{value}</span>
                 </p>
